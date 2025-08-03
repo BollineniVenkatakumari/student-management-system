@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../style.css';
 
 function AddStudent() {
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ function AddStudent() {
   };
 
   return (
-    <div>
+    <div className="form-wrapper">
+     <div className="container">
       <h2>Add Student</h2>
       <form onSubmit={handleSubmit}>
         <div><label>ID:</label><input type="text" name="id" value={student.id} onChange={handleChange} required /></div>
@@ -35,6 +37,7 @@ function AddStudent() {
         <div><label>Course:</label><input type="text" name="course" value={student.course} onChange={handleChange} required /></div>
         <button type="submit">Add</button>
       </form>
+     </div>
     </div>
   );
 }
