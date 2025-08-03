@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../style.css';
 
 function StudentList() {
   const [students, setStudents] = useState([]);
@@ -20,18 +21,23 @@ function StudentList() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Student List</h2>
-      <Link to="/add">Add Student</Link>
-      <ul>
-        {students.map((student) => (
-          <li key={student.id}>
-            <strong>ID:</strong> {student.id} | <strong>Name:</strong> {student.name} | <strong>Roll No:</strong> {student.roll_no} | <strong>Email:</strong> {student.email} | <strong>Phone:</strong> {student.phone_no} | <strong>Course:</strong> {student.course} 
-            &nbsp; <Link to={`/edit/${student.id}`}>Edit</Link>
-            &nbsp; <button onClick={() => deleteStudent(student.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <Link to="/add" className="add-link">Add Student</Link>
+      {students.map((student) => (       
+        <div key={student.id} className='student-card'>
+           <p><strong>ID:</strong> {student.id}</p>
+           <p><strong>Name:</strong> {student.name}</p>
+           <p><strong>Roll No:</strong> {student.roll_no}</p>
+           <p><strong>Email:</strong> {student.email}</p>
+           <p><strong>Phone:</strong> {student.phone_no}</p>
+           <p><strong>Course:</strong> {student.course}</p>
+           <div className="action-buttons">
+            <Link to={`/edit/${student.id}`} className="edit-link">Edit</Link>
+            <button className="delete-btn" onClick={() => deleteStudent(student.id)}>Delete</button>
+           </div>       
+        </div>       
+      ))}
     </div>
   );
 }
